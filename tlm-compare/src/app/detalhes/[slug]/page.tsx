@@ -1,6 +1,7 @@
 'use client'
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { use } from 'react';
 
 const devices = [
   {
@@ -85,12 +86,11 @@ function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-interface DetalhesPageProps {
-  params: { slug: string };
-}
 
-export default function DetalhesPage({ params }: DetalhesPageProps) {
-  const { slug } = params;
+type DetalhesPageProps = Promise<{ slug: string }>
+
+export default function DetalhesPage(props:{ params : DetalhesPageProps}) {
+  const { slug } = use(props.params);
   const device = devices.find(d => slugify(d.name) === slug);
 
   if (!device) return notFound();
