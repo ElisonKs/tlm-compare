@@ -169,7 +169,7 @@ export default function CompararPage() {
               {featureKeys.map(key => (
                 <tr key={key} className="border-t">
                   <td className="py-2 px-4 font-medium text-blue-700">{featureLabels[key]}</td>
-                  {selectedDevices.map((d, i) => (
+                  {selectedDevices.map((d) => (
                     <td
                       key={d.name + key}
                       className={`py-2 px-4 ${diffKeys.has(key) && key !== 'image' ? 'bg-yellow-100' : ''}`}
